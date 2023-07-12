@@ -199,8 +199,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     color: '#000',
+    fontFamily: 'RobotoCondensed-Bold',
+    letterSpacing: 0,
   },
   seeMoreTextContainer: {
     flexDirection: 'row',
@@ -209,11 +211,12 @@ const styles = StyleSheet.create({
   },
   seeMoreText: {
     color: '#209fa7ff',
-    fontSize: 20,
-    fontWeight: '600',
+    fontSize: 18,
+    // fontWeight: '600',
+    fontFamily: 'RobotoCondensed-Bold',
   },
   nextIcon: {
-    fontSize: 30,
+    fontSize: 26,
     color: '#209fa7ff',
   },
   divider: {
@@ -223,8 +226,9 @@ const styles = StyleSheet.create({
   },
   text1: {
     color: '#2c3a3dff',
-    fontSize: 16,
-    fontWeight: '800',
+    fontSize: 18,
+    // fontWeight: '800',
+    fontFamily: 'RobotoCondensed-Bold',
   },
   iconColor: {
     color: '#209fa7ff',
@@ -271,7 +275,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#FFF',
     fontSize: 16,
-    letterSpacing: 0.2,
+    letterSpacing: 0,
+    fontFamily: 'RobotoCondensed-Regular',
   },
   cardCount: {
     fontSize: 40,
@@ -293,6 +298,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#000',
     fontWeight: '600',
+    fontFamily: 'RobotoCondensed-Bold',
   },
   propertyContainer: {
     flexDirection: 'row',

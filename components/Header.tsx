@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#000',
+    fontFamily: 'RobotoCondensed-BoldItalic',
   },
   screenContainer: {
     flex: 1,

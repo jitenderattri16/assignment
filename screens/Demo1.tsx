@@ -54,7 +54,13 @@ function Dashboard() {
                 justifyContent: 'space-between',
                 marginBottom: 10,
               }}>
-              <Text style={{fontSize: 24, fontWeight: '600', color: '#000'}}>
+              <Text
+                style={{
+                  fontSize: 24,
+                  fontWeight: '600',
+                  color: '#000',
+                  fontFamily: 'RobotoCondensed-Bold',
+                }}>
                 Accounting
               </Text>
               <Menu
@@ -73,10 +79,11 @@ function Dashboard() {
             </View>
             <Text
               style={{
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: '600',
                 color: '#8c989bff',
                 marginBottom: 25,
+                fontFamily: 'RobotoCondensed-Regular',
               }}>
               Aug 1, 2021 - Aug 31, 2021
             </Text>
@@ -90,10 +97,23 @@ function Dashboard() {
             }}
           />
           <View>
-            <Text style={{fontSize: 20, fontWeight: '600', color: '#000'}}>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: '600',
+                color: '#000',
+                fontFamily: 'RobotoCondensed-Bold',
+                letterSpacing: 0.2,
+              }}>
               AVG. Monthly Income
             </Text>
-            <Text style={{fontSize: 50, fontWeight: '800', color: '#000'}}>
+            <Text
+              style={{
+                fontSize: 50,
+                fontWeight: '800',
+                color: '#000',
+                fontFamily: 'RobotoCondensed-Bold',
+              }}>
               $5,849.36
             </Text>
             <View style={styles.row}>
@@ -136,10 +156,23 @@ function Dashboard() {
             </View>
           </LinearGradient>
           <View>
-            <Text style={{fontSize: 24, fontWeight: 'bold', color: '#000'}}>
+            <Text
+              style={{
+                fontSize: 24,
+                fontWeight: 'bold',
+                color: '#000',
+                fontFamily: 'RobotoCondensed-Bold',
+              }}>
               $89,240.38
             </Text>
-            <Text style={{color: '#000', fontWeight: '500'}}>Total Income</Text>
+            <Text
+              style={{
+                color: '#000',
+                fontWeight: '500',
+                fontFamily: 'RobotoCondensed-Bold',
+              }}>
+              Total Income
+            </Text>
           </View>
         </View>
         <View style={styles.container3}>
@@ -167,14 +200,26 @@ function Dashboard() {
                   fontSize: 20,
                   color: '#FF0000',
                 }}
-                name="trending-up"></FeatureIcon>
+                name="trending-up"
+              />
             </View>
           </LinearGradient>
           <View>
-            <Text style={{fontSize: 24, fontWeight: 'bold', color: '#000'}}>
+            <Text
+              style={{
+                fontSize: 24,
+                fontWeight: 'bold',
+                color: '#000',
+                fontFamily: 'RobotoCondensed-Bold',
+              }}>
               $16,237.82
             </Text>
-            <Text style={{color: '#000', fontWeight: '500'}}>
+            <Text
+              style={{
+                color: '#000',
+                fontWeight: '500',
+                fontFamily: 'RobotoCondensed-Bold',
+              }}>
               Total Expenses
             </Text>
           </View>
@@ -222,6 +267,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     color: '#209fa7ff',
+    fontFamily: 'RobotoCondensed-Bold',
   },
   text3: {
     fontSize: 18,
@@ -232,6 +278,8 @@ const styles = StyleSheet.create({
   text4: {
     fontSize: 18,
     fontWeight: '500',
+    fontFamily: 'RobotoCondensed-light',
+    letterSpacing: 0,
   },
   text5: {
     marginHorizontal: 5,
