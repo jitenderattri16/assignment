@@ -1,79 +1,71 @@
 import React from 'react';
-import {BarChart, XAxis} from 'react-native-svg-charts';
-import {View} from 'react-native';
-import * as scale from 'd3-scale';
-import * as shape from 'd3-shape';
+import {StyleSheet, Text, View} from 'react-native';
+import {BarChart} from 'react-native-gifted-charts';
+import Icon from 'react-native-vector-icons/AntDesign';
 
-function BarCharts() {
-  const data = [
+const SimpleBarAnimated = () => {
+  const barData = [
     {
-      value: 20,
-      label: 'Mar',
-      amount: 4000,
-      svg: {
-        fill: '#b5eaeeff',
-      },
+      value: 230,
+      label: 'Jan',
+      frontColor: '#91E3E3',
+      focused: true,
     },
-    {
-      value: 40,
-      label: 'Mar',
-      svg: {
-        fill: '#b5eaeeff',
-      },
-    },
-    {
-      value: 80,
-      label: 'Mar',
-      svg: {
-        fill: '#b5eaeeff',
-      },
-    },
-    {
-      value: 20,
-      label: 'Mar',
-      svg: {
-        fill: '#b5eaeeff',
-      },
-    },
-    {
-      value: 20,
-      label: 'Mar',
-      amount: 4030,
-      svg: {
-        fill: '#b5eaeeff',
-        onPress: (val: any) => {
-          console.log('clicked', val);
-        },
-      },
-    },
+
+    {value: 200, label: 'Mar', frontColor: '#91E3E3'},
+    {value: 250, label: 'Apr', frontColor: '#4ABFF4'},
+    {value: 320, label: 'May', frontColor: '#91E3E3'},
+    {value: 320, label: 'Jun', frontColor: '#91E3E3'},
+    {value: 180, label: 'July', frontColor: '#91E3E3'},
+    // {value: 180, label: 'Aug', frontColor: '#91E3E3'},
   ];
-
   return (
-    <View style={{height: 200, padding: 20}}>
-      <XAxis
-        style={{marginTop: 10}}
-        data={data}
-        scale={scale.scaleBand}
-        formatLabel={(value: any) => data[value]?.label}
-      />
+    <View style={styles.removeInitial}>
       <BarChart
-        style={{flex: 1}}
-        data={data}
-        gridMin={0}
-        svg={{fill: '#b5eaeeff'}}
-        yAccessor={({item}) => item.value}
-        spacingInner={0.3}
-        curve={shape.curveCardinalOpen}
-      />
-      <XAxis
-        style={{marginTop: 10}}
-        data={data}
-        scale={scale.scaleBand}
-        formatLabel={(value: any) => data[value]?.label}
-        // labelStyle={{color: 'black'}}
+        hideRules
+        hideAxesAndRules
+        renderTooltip={(val: any) => (
+          <View style={styles.container}>
+            <Text style={styles.text}>${val.value}</Text>
+            <Icon style={styles.icon} name="caretdown" />
+          </View>
+        )}
+        onPress={(r: any) => {
+          console.log(r);
+        }}
+        maxValue={400}
+        data={barData}
+        barWidth={40}
+        // verticalLinesSpacing={30}
+        // spacing={15}
+        barBorderRadius={20}
       />
     </View>
   );
-}
+};
 
-export default BarCharts;
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#01585eff',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 10,
+    marginBottom: 10,
+    position: 'relative',
+  },
+  icon: {
+    position: 'absolute',
+    bottom: -6,
+    left: '52%',
+    color: '#01585eff',
+    fontSize: 12,
+  },
+  text: {
+    color: '#FFF',
+  },
+  removeInitial: {
+    marginLeft: -69,
+  },
+});
+
+export default SimpleBarAnimated;

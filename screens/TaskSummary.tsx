@@ -6,6 +6,10 @@ import {LineChart, PieChart} from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
 import FlipCard from 'react-native-flip-card';
 
+// import img1 from '../assets/images/back1.png'
+// import img2 from '../assets/images/back2.png'
+// import img3 from '../assets/images/back3.png'
+
 // import SVGShape from './back.svg';
 
 interface Properties {
@@ -18,12 +22,13 @@ interface Properties {
 interface Cards {
   label: string;
   count: number;
+  backgroundColor: string;
 }
 
 const cards: Cards[] = [
-  {label: 'New', count: 3},
-  {label: 'Assigned', count: 16},
-  {label: 'Closed', count: 32},
+  {label: 'New', count: 3, backgroundColor: '#BE853B'},
+  {label: 'Assigned', count: 16, backgroundColor: '#14319E'},
+  {label: 'Closed', count: 32, backgroundColor: '#43A0A8'},
 ];
 
 const properties: Properties[] = [
@@ -52,88 +57,26 @@ function TaskSummary() {
       <View>
         <View style={styles.container}>
           <Text style={styles.title}>Task Summary</Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: 20,
-            }}>
+          <View style={styles.cardContainer}>
             {cards.map(card => (
-              <View style={{width: '32%', height: 120}} key={card.label}>
+              <View style={styles.card} key={card.label}>
                 <FlipCard flipHorizontal={true} flipVertical={false}>
                   <View
-                    style={{
-                      backgroundColor: '#FF9800',
-                      width: '100%',
-                      borderRadius: 15,
-                      padding: 15,
-                    }}>
-                    <Text
-                      style={{
-                        fontWeight: '600',
-                        color: '#FFF',
-                        fontSize: 16,
-                        letterSpacing: 0.2,
-                      }}>
-                      {card.label}
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: 40,
-                        fontWeight: '700',
-                        color: '#FFF',
-                        marginTop: 20,
-                        borderRadius: 25,
-                      }}>
-                      {card.count}
-                    </Text>
+                    style={[
+                      styles.innerCard,
+                      {
+                        backgroundColor: card.backgroundColor,
+                      },
+                    ]}>
+                    <Text style={styles.cardTitle}>{card.label}</Text>
+                    <Text style={styles.cardCount}>{card.count}</Text>
                   </View>
-                  <View
-                    style={{
-                      backgroundColor: '#FF9800',
-                      width: '100%',
-                      borderRadius: 15,
-                      padding: 15,
-                      height: '100%',
-                    }}>
-                    <Text
-                      style={{
-                        fontWeight: '600',
-                        color: '#FFF',
-                        fontSize: 16,
-                        letterSpacing: 0.2,
-                      }}>
-                      {'Flipped view '}
-                    </Text>
+                  <View style={styles.innerCard}>
+                    <Text style={styles.cardTitle}>{'Flipped view '}</Text>
                   </View>
                 </FlipCard>
               </View>
             ))}
-
-            {/* <View style={{width: 33, height: 70}}>
-              <View
-                style={{
-                  position: 'absolute',
-                  width: 33,
-                  height: '100%',
-                  // bottom: 0,
-                  zIndex: -1,
-                }}>
-                <BackgroundSvg />
-              </View>
-            </View> */}
-            {/* <View style={{width: 33, height: 70}}>
-              <View
-                style={{
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  // bottom: 0,
-                  zIndex: -1,
-                }}>
-                <BackgroundSvg />
-              </View> */}
-            {/* </View> */}
           </View>
 
           {/* <View></View> */}
@@ -167,74 +110,33 @@ function TaskSummary() {
               </LineChart>
             </View>
           </View>
-
-          {/* <PieChart
-          style={{width: 300, height: 300}}
-          data={pieChartDataRounded}
-          innerRadius={109}
-          outerRadius={100}
-          labelRadius={1}
-          sort={(a, b) => b.key - a.key}></PieChart> */}
         </View>
         <View style={styles.container2}>
           <View style={styles.spaceBetween}>
             <Text style={styles.title}>Properties</Text>
             {/* <View></View> */}
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: 24,
-              }}>
+            <View style={[styles.rowCenter, styles.mb24]}>
               <Text style={styles.seeMoreText}>All properties</Text>
               <Icon style={styles.nextIcon} name="navigate-next" />
             </View>
           </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
+          <View style={styles.rowCenter}>
             <View>
               {properties.map(property => (
-                <View style={{flexDirection: 'row', marginBottom: 10}}>
+                <View style={styles.propertyContainer}>
                   <View
-                    style={{
-                      backgroundColor: property.color,
-                      height: 12,
-                      width: 12,
-                      borderRadius: 3,
-                      marginTop: 10,
-                    }}
+                    style={[
+                      styles.propertyBoxContainer,
+                      {
+                        backgroundColor: property.color,
+                      },
+                    ]}
                   />
-                  <View style={{marginLeft: 7}}>
-                    <Text
-                      style={{
-                        fontSize: 24,
-                        color: '#000',
-                        fontWeight: '600',
-                      }}>
-                      {property.label}
-                    </Text>
-                    <View
-                      style={{flexDirection: 'row', alignItems: 'flex-end'}}>
-                      <Text
-                        style={{
-                          fontSize: 16,
-                          fontWeight: '500',
-                          color: '#000',
-                          marginRight: 5,
-                        }}>
-                        {property.text}
-                      </Text>
-                      <Text
-                        style={{
-                          fontWeight: '500',
-                          color: '#8c989bff',
-                          fontSize: 17,
-                        }}>
+                  <View style={styles.container3}>
+                    <Text style={styles.propertyLabel}>{property.label}</Text>
+                    <View style={styles.alignEnd}>
+                      <Text style={styles.propertyText}>{property.text}</Text>
+                      <Text style={styles.propertyPercentage}>
                         {property.percentage}%
                       </Text>
                     </View>
@@ -242,16 +144,39 @@ function TaskSummary() {
                 </View>
               ))}
             </View>
-            <View>
+            <View style={{position: 'relative'}}>
               <PieChart
-                style={{width: 150, height: 150}}
+                style={styles.pieChart}
                 data={pieChartDataRounded}
-                innerRadius={55}
-                outerRadius={50}
-                labelRadius={1}
-                sort={(a, b) => b.key - a.key}>
-                <Text>{`${10} km/h`}</Text>
-              </PieChart>
+                innerRadius={60}
+                outerRadius={70}
+                labelRadius={5}
+                sort={(a, b) => b.key - a.key}
+              />
+              <View
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  marginTop: '35%',
+                }}>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    fontSize: 32,
+                    fontWeight: '700',
+                    color: '#000',
+                  }}>
+                  632
+                </Text>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                  }}>
+                  Total units
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -264,9 +189,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFF',
     padding: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#fafafa',
   },
   container2: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#fafafa',
     padding: 20,
     marginTop: 10,
   },
@@ -323,6 +250,80 @@ const styles = StyleSheet.create({
   chart: {
     height: 60,
     width: 150,
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  card: {
+    width: '32%',
+    height: 120,
+  },
+  innerCard: {
+    backgroundColor: '#FF9800',
+    width: '100%',
+    borderRadius: 15,
+    padding: 15,
+    height: '100%',
+  },
+  cardTitle: {
+    fontWeight: '600',
+    color: '#FFF',
+    fontSize: 16,
+    letterSpacing: 0.2,
+  },
+  cardCount: {
+    fontSize: 40,
+    fontWeight: '700',
+    color: '#FFF',
+    marginTop: 20,
+    borderRadius: 25,
+  },
+  rowCenter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  pieChart: {
+    width: 200,
+    height: 200,
+  },
+  propertyLabel: {
+    fontSize: 24,
+    color: '#000',
+    fontWeight: '600',
+  },
+  propertyContainer: {
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  propertyBoxContainer: {
+    height: 12,
+    width: 12,
+    borderRadius: 3,
+    marginTop: 10,
+  },
+  container3: {
+    marginLeft: 7,
+  },
+  alignEnd: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
+  propertyText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#000',
+    marginRight: 5,
+  },
+  propertyPercentage: {
+    fontWeight: '500',
+    color: '#8c989bff',
+    fontSize: 17,
+  },
+  mb24: {
+    marginBottom: 24,
   },
 });
 

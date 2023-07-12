@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, RefreshControl} from 'react-native';
 import FeatureIcon from 'react-native-vector-icons/Feather';
 
 import BarCharts from '../components/BarChart';
@@ -8,14 +8,25 @@ import LinearGradient from 'react-native-linear-gradient';
 
 function Dashboard() {
   const [visible, setVisible] = useState(false);
+  const [refreshing, setRefreshing] = React.useState(false);
 
   const hideMenu = () => setVisible(false);
 
   const showMenu = () => setVisible(true);
 
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 5000);
+  }, []);
+
   return (
     <View>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         <View style={styles.container}>
           <View>
             <View
@@ -75,7 +86,6 @@ function Dashboard() {
             </View>
 
             <BarCharts />
-            <View></View>
           </View>
         </View>
         <View style={styles.container2}>
@@ -157,19 +167,21 @@ function Dashboard() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f7f7f7',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    backgroundColor: '#fafafa',
     padding: 20,
     borderBottomColor: '#e8ebeeff',
     borderBottomWidth: 1,
     fontFamily: 'Roboto Condensed',
   },
   container2: {
-    backgroundColor: '#f7f7f7',
+    backgroundColor: '#fafafa',
     padding: 20,
     flexDirection: 'row',
   },
   container3: {
-    backgroundColor: '#f7f7f7',
+    backgroundColor: '#fafafa',
     paddingHorizontal: 20,
     paddingTop: 0,
     paddingBottom: 20,

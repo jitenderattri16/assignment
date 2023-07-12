@@ -36,7 +36,15 @@ function App(): JSX.Element {
             backgroundColor: '#000000',
           },
         }}>
-        <Tab.Screen name="Home" component={Demo1} />
+        <Tab.Screen
+          name="Home"
+          options={{
+            headerStyle: {
+              backgroundColor: '#e7305b',
+            },
+          }}
+          component={Demo1}
+        />
         <Tab.Screen name="Task Summary" component={TaskSummary} />
         <Tab.Screen name="demo1" component={Demo2} />
         <Tab.Screen name="demo2" component={Demo3} />

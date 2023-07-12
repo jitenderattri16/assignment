@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, SafeAreaView} from 'react-native';
 import SwipeView from 'react-native-vertical-swipe-view';
-import LinearGradient from 'react-native-linear-gradient';
 
 function Demo2() {
   const _renderHeaderTop = () => {
@@ -24,7 +23,7 @@ function Demo2() {
       <SwipeView
         position="top"
         style={styles.curtainView}
-        maxHeight={300}
+        maxHeight={700}
         headerStyle={{backgroundColor: 'transparent'}}
         renderHeader={_renderHeaderTop}>
         <View style={styles.curtainContainer} />

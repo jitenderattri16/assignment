@@ -4,9 +4,15 @@ import Icon from 'react-native-vector-icons/Feather';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import PersonImage from '../assets/images/user-5.jpg';
 
-function Header({navigation}: any) {
+function Header({route, navigation}: any) {
+  console.log({route});
+
   return (
-    <View style={styles.header}>
+    <View
+      style={[
+        styles.header,
+        {backgroundColor: route?.name === 'Home' ? '#F0F0F0' : '#fff'},
+      ]}>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <View style={styles.dashboard}>
           <Icon size={24} color={'#000'} name="bar-chart" />
@@ -57,7 +63,7 @@ const styles = StyleSheet.create({
     height: 70,
     backgroundColor: '#FFF',
     borderBottomColor: '#e8eaedff',
-    borderBottomWidth: 2,
+    // borderBottomWidth: 1,
   },
   headerText: {
     fontSize: 18,
