@@ -1,33 +1,52 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView, RefreshControl} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {View, Text, StyleSheet, Animated, Image} from 'react-native';
 import FeatureIcon from 'react-native-vector-icons/Feather';
-
 import BarCharts from '../components/BarChart';
 import {Menu, MenuItem} from 'react-native-material-menu';
 import LinearGradient from 'react-native-linear-gradient';
 
 function Dashboard() {
+  const H_MAX_HEIGHT = 150;
+  const H_MIN_HEIGHT = 1;
+  const H_SCROLL_DISTANCE = H_MAX_HEIGHT - H_MIN_HEIGHT;
+  const scrollOffsetY = useRef(new Animated.Value(0)).current;
+
+  const headerScrollHeight = scrollOffsetY.interpolate({
+    inputRange: [0, H_SCROLL_DISTANCE],
+    outputRange: [H_MAX_HEIGHT, H_MIN_HEIGHT],
+    extrapolate: 'clamp',
+  });
+
   const [visible, setVisible] = useState(false);
-  const [refreshing, setRefreshing] = React.useState(false);
 
   const hideMenu = () => setVisible(false);
 
   const showMenu = () => setVisible(true);
 
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 5000);
-  }, []);
-
   return (
     <View>
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }>
-        <View style={styles.container}>
+      <Animated.View
+        style={[
+          styles.absolateView,
+          {
+            height: headerScrollHeight,
+          },
+        ]}>
+        <Image
+          source={{uri: 'https://via.placeholder.com/300'}}
+          style={{flex: 1}}
+          resizeMode={'contain'}
+        />
+      </Animated.View>
+      <Animated.ScrollView
+        onScroll={Animated.event(
+          [{nativeEvent: {contentOffset: {y: scrollOffsetY}}}],
+          // {
+          //   useNativeDriver: true,
+          // },
+        )}
+        scrollEventThrottle={16}>
+        <View style={[styles.container, {marginTop: H_MAX_HEIGHT}]}>
           <View>
             <View
               style={{
@@ -160,7 +179,7 @@ function Dashboard() {
             </Text>
           </View>
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
     </View>
   );
 }
@@ -217,6 +236,18 @@ const styles = StyleSheet.create({
   text5: {
     marginHorizontal: 5,
     fontSize: 16,
+  },
+  absolateView: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    width: '100%',
+    overflow: 'hidden',
+    zIndex: 999,
+    borderBottomColor: '#f0f0f0',
+    borderBottomWidth: 2,
+    backgroundColor: '#f0f0f0',
   },
 });
 

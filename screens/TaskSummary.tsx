@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Animated} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FeatureIcon from 'react-native-vector-icons/Feather';
 import {LineChart, PieChart} from 'react-native-svg-charts';
@@ -53,7 +53,7 @@ function TaskSummary() {
   // const data10 = [40, 83, 52];
   const pieChartDataRounded = getPieChartDataRounded(properties);
   return (
-    <ScrollView>
+    <Animated.ScrollView>
       <View>
         <View style={styles.container}>
           <Text style={styles.title}>Task Summary</Text>
@@ -181,7 +181,7 @@ function TaskSummary() {
           </View>
         </View>
       </View>
-    </ScrollView>
+    </Animated.ScrollView>
   );
 }
 
