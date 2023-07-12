@@ -1,13 +1,28 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import LinearGradient from 'react-native-linear-gradient';
 
 function BottomBar({state, descriptors, navigation}: any) {
   return (
     <View style={styles.container}>
       {state.routes.map((route: any, index: number) => {
+        let name = 'dashboard';
         const {options} = descriptors[route.key];
         const label = options.tabBarLabel || route.name;
+
+        if (label === 'Task Summary') {
+          name = 'message';
+        }
+        if (label === 'demo1') {
+          name = 'calendar-today';
+        }
+        if (label === 'demo2') {
+          name = 'mobile-friendly';
+        }
+        if (label === 'demo3') {
+          name = 'supervised-user-circle';
+        }
 
         const isFocused = state.index === index;
 
@@ -27,11 +42,23 @@ function BottomBar({state, descriptors, navigation}: any) {
             key={index}
             onPress={onPress}
             style={styles.opacityContainer}>
-            <Icon
-              name={label === 'Home' ? 'home' : 'logo-ionic'}
-              size={30}
-              color={isFocused ? '#000000' : '#808080'}
-            />
+            {isFocused ? (
+              <LinearGradient
+                colors={['#e1e8e9', '#e1e8e9', '#f7f7f7', '#FFF']}
+                style={styles.linearStyles}>
+                <MaterialIcons
+                  name={name}
+                  size={30}
+                  color={isFocused ? '#01585e' : '#c6cbcdff'}
+                />
+              </LinearGradient>
+            ) : (
+              <MaterialIcons
+                name={name}
+                size={30}
+                color={isFocused ? '#01585e' : '#c6cbcdff'}
+              />
+            )}
           </TouchableOpacity>
         );
       })}
@@ -47,13 +74,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     height: 70,
     paddingTop: 10,
-    // borderTopStartRadius: 10,
-    // borderTopRightRadius: 50,
-    // paddingVertical: 20,
-    // shadowColor: '#171717',
-    // shadowOffset: {width: -4, height: -4},
-    // shadowOpacity: 0.5,
-    // shadowRadius: 3,
     elevation: 5,
   },
   opacityContainer: {
@@ -62,6 +82,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 20,
+  },
+  linearStyles: {
+    height: 54,
+    width: 54,
+    borderRadius: 26,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
   },
 });
 

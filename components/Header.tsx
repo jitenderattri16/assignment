@@ -8,48 +8,25 @@ function Header({navigation}: any) {
   return (
     <View style={styles.header}>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={styles.dashboard}>
           <Icon size={24} color={'#000'} name="bar-chart" />
           <Text style={styles.headerText}>Dashboard</Text>
         </View>
       </TouchableOpacity>
-      <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-          <View
-            style={{
-              height: 40,
-              width: 40,
-              borderWidth: 1,
-              borderRadius: 20,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#FFF',
-              borderColor: '#e8ebeeff',
-              padding: 5,
-            }}>
-            <EntypoIcon style={{fontSize: 20}} name="bell" />
+      <View style={styles.row}>
+        <View style={styles.notificationIcon}>
+          <View style={styles.absoluteBadge}>
+            <Text style={styles.badgeText}>2</Text>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-          <View
-            style={{
-              height: 40,
-              width: 40,
-              borderWidth: 1,
-              borderRadius: 20,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#FFF',
-              borderColor: '#e8ebeeff',
-              padding: 5,
-              marginLeft: 5,
-            }}>
-            <Image
-              style={{width: 40, height: 40, borderRadius: 20}}
-              source={Image.resolveAssetSource(PersonImage)}
-            />
-          </View>
-        </TouchableOpacity>
+          <EntypoIcon style={styles.bellIcon} name="bell" />
+        </View>
+
+        <View style={styles.profileContainer}>
+          <Image
+            style={styles.profileImage}
+            source={Image.resolveAssetSource(PersonImage)}
+          />
+        </View>
       </View>
     </View>
   );
@@ -91,6 +68,63 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  dashboard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  notificationIcon: {
+    height: 40,
+    width: 40,
+    borderWidth: 1,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFF',
+    borderColor: '#e8ebeeff',
+    padding: 5,
+    position: 'relative',
+  },
+  bellIcon: {
+    fontSize: 20,
+  },
+  profileContainer: {
+    height: 40,
+    width: 40,
+    borderWidth: 1,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFF',
+    borderColor: '#e8ebeeff',
+    padding: 5,
+    marginLeft: 5,
+  },
+  profileImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+  absoluteBadge: {
+    top: -6,
+    position: 'absolute',
+    right: -3,
+    backgroundColor: '#209fa7ff',
+    height: 20,
+    width: 20,
+    display: 'flex',
+    alignContent: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    borderRadius: 10,
+    elevation: 5,
+  },
+  badgeText: {
+    color: '#FFF',
+    marginLeft: 6,
   },
 });
 
