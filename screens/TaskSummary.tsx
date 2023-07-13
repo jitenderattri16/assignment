@@ -123,7 +123,7 @@ function TaskSummary() {
           <View style={styles.rowCenter}>
             <View>
               {properties.map(property => (
-                <View style={styles.propertyContainer}>
+                <View style={styles.propertyContainer} key={property.color}>
                   <View
                     style={[
                       styles.propertyBoxContainer,
