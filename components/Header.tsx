@@ -5,8 +5,6 @@ import EntypoIcon from 'react-native-vector-icons/Entypo';
 import PersonImage from '../assets/images/user-5.jpg';
 
 function Header({route, navigation}: any) {
-  console.log({route});
-
   return (
     <View
       style={[
@@ -15,7 +13,7 @@ function Header({route, navigation}: any) {
       ]}>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <View style={styles.dashboard}>
-          <Icon size={24} color={'#000'} name="bar-chart" />
+          <Icon size={24} color={'#000'} name="menu" />
           <Text style={styles.headerText}>Dashboard</Text>
         </View>
       </TouchableOpacity>
@@ -70,6 +68,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
     fontFamily: 'RobotoCondensed-BoldItalic',
+    marginStart: 5,
   },
   screenContainer: {
     flex: 1,
